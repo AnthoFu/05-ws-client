@@ -1,42 +1,18 @@
-import { connectToServer } from './socket-client'
-import './style.css'
+import { connectToServer } from './socket/socket-client';
+import './styles/style.css';
 
+const loginView = document.querySelector<HTMLElement>('#login-view')!;
+const chatView = document.querySelector<HTMLElement>('#chat-view')!;
+const jwtToken = document.querySelector<HTMLInputElement>('#jwt-token')!;
+const btnConnect = document.querySelector<HTMLButtonElement>('#btn-connect')!;
 
-document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
-  <div>
-    <h2>Websocket - Client</h2>
-
-    <input id="jwt-token" placeholder="Json Web Token"/>
-
-    <button id="btn-connect"> Conectarse <button/>
-
-    <ul id="clients-ul">
-    </ul>
-    <span id="server-status">offline</span>
-
-  <form id="message-form">
-    <input placeholder="mensaje" id="message-input"/>
-  </form>
-  
-  <h3>Mensajes:</h3>
-
-  <ul id="messages-ul">
-
-  </ul>
-
-
-  </div>
-`
-
-const btnConnect = document.querySelector<HTMLButtonElement>('#btn-connect')
-const jwtToken = document.querySelector<HTMLInputElement>('#jwt-token')
-
-// connectToServer()
-btnConnect?.addEventListener('click', ()=>{
-  
-  if (!jwtToken || jwtToken.value.trim().length <= 0 ){
-    return alert ('Escribe un JWT valido')
+btnConnect.addEventListener('click', () => {
+  if (jwtToken.value.trim().length <= 0) {
+    return alert('Por favor, ingrese un JWT válido');
   }
-
-  connectToServer(jwtToken.value.trim())
-})
+  
+  connectToServer(jwtToken.value.trim(), () => {
+    loginView.classList.add('hidden');
+    chatView.classList.remove('hidden');
+  });
+});

@@ -1,13 +1,47 @@
 <!doctype html>
-<html lang="en">
+<html lang="es">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <link rel="icon" type="image/x-icon" href="/src/assets/favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vite + TS</title>
+    <title>AnthoFu - Chatter</title>
+    <link rel="stylesheet" href="./src/styles/style.css">
   </head>
   <body>
-    <div id="app"></div>
+    <div class="container">
+
+      <!-- Vista de Login -->
+      <section id="login-view">
+        <h1>AnthoFu - Chatter</h1>
+        <p>Por favor, ingrese su JWT para conectarse.</p>
+        <div class="form-group">
+          <input id="jwt-token" placeholder="Json Web Token" autocomplete="off" />
+          <button id="btn-connect">Conectar</button>
+        </div>
+      </section>
+
+      <!-- Vista de Chat -->
+      <section id="chat-view" class="hidden">
+        
+        <div id="chat-container">
+          <div id="users-list">
+            <h2>Usuarios Conectados</h2>
+            <ul id="clients-ul"></ul>
+          </div>
+
+          <div id="chat-area">
+            <div id="server-status"></div>
+            <ul id="messages-ul"></ul>
+            <form id="message-form">
+              <input placeholder="Mensaje" id="message-input" autocomplete="off"/>
+              <button type="submit">Enviar</button>
+            </form>
+          </div>
+        </div>
+
+      </section>
+
+    </div>
     <script type="module" src="/src/main.ts"></script>
   </body>
 </html>
