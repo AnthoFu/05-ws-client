@@ -11,9 +11,14 @@ document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
     <span id="server-status">offline</span>
 
   <form id="message-form">
-  <input placeholder="mensaje" id="message-input"/>
+    <input placeholder="mensaje" id="message-input"/>
   </form>
+  
+  <h3>Mensajes:</h3>
 
+  <ul id="messages-ul">
+
+  </ul>
 
 
   </div>

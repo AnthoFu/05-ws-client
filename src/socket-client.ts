@@ -14,6 +14,7 @@ const addLinsteners = (socket: Socket) => {
 
     const messageForm= document.querySelector<HTMLFormElement>('#message-form')!;
     const messageInput= document.querySelector<HTMLInputElement>('#message-input')!;
+    const messagesUl = document.querySelector<HTMLUListElement>('#messages-ul')!;
 
 
     socket.on('connect', () => {
@@ -31,6 +32,7 @@ const addLinsteners = (socket: Socket) => {
             <li>${clientId}</li>
             `
         })
+        
         clientsUl.innerHTML = clientsHtml
     });
 
@@ -39,7 +41,21 @@ const addLinsteners = (socket: Socket) => {
         if(messageInput.value.trim().length <= 0) return;
 
         socket.emit('message-from-client', {id:'YOO', message: messageInput.value})
+
+        messageInput.value = '';
+    });
+
+    socket.on('message-from-server', (payload: {fullName: string, message: string}) => {
+        const newMessage = `
+        <li>
+            <strong>${payload.fullName}</strong>
+            <span>${payload.message}</span>
+        </li>
+        `
+        const li = document.createElement('li');
+        li.innerHTML = newMessage;
+        messagesUl.append(li)
     })
 
-    messageInput.value = '';
+
 }
