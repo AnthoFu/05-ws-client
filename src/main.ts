@@ -9,6 +9,13 @@ document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
     <ul id="clients-ul">
     </ul>
     <span id="server-status">offline</span>
+
+  <form id="message-form">
+  <input placeholder="mensaje" id="message-input"/>
+  </form>
+
+
+
   </div>
 `
 
