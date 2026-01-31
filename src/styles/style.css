@@ -41,6 +41,9 @@ input, button {
   border-radius: 8px;
   border: 1px solid transparent;
   transition: border-color 0.25s;
+  box-sizing: border-box;
+  width: 100%;
+  margin-bottom: 0.5rem;
 }
 
 button {
@@ -53,25 +56,75 @@ button:hover {
 }
 
 .hidden {
-  display: none;
+  display: none !important;
 }
 
-/* Login View */
-#login-view {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 1rem;
+/* --- Auth Views --- */
+#initial-view, #login-view, #register-view {
+    max-width: 400px;
+    margin: auto;
 }
 
-.form-group {
-  display: flex;
-  gap: 0.5rem;
+/* This rule now only applies to the sections that are NOT hidden */
+.container > section:not(.hidden) {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
 }
+
+
+.view-menu {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+#login-form, #register-form {
+  width: 100%;
+}
+
+a {
+  color: #646cff;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+p a.goto-initial {
+    font-size: 0.8em;
+    color: #888;
+}
+
+.error-message {
+  color: #ff6b6b;
+  text-align: center;
+  margin-top: 1rem;
+  min-height: 1.5em;
+}
+
 
 /* Chat View */
 #chat-view {
   width: 100%;
+}
+
+#chat-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 0.5rem;
+  margin-bottom: 1rem;
+  border-bottom: 1px solid #444;
+}
+
+#server-status {
+  font-style: italic;
+  color: #888;
+}
+
+#btn-logout {
+    width: auto;
+    padding: 0.4em 0.8em;
 }
 
 #chat-container {
@@ -112,15 +165,6 @@ button:hover {
   display: flex;
   flex-direction: column;
   padding: 1rem;
-}
-
-#server-status {
-  text-align: center;
-  padding-bottom: 0.5rem;
-  font-style: italic;
-  color: #888;
-  border-bottom: 1px solid #444;
-  margin-bottom: 1rem;
 }
 
 #messages-ul {
