@@ -66,8 +66,8 @@ const addListeners = (onConnected: () => void) => {
 
     socket.on('clients-updated', (clients: string[]) => {
         let clientsHtml = '';
-        clients.forEach(clientId => {
-            clientsHtml += `<li>${clientId}</li>`;
+        clients.forEach(clientName => {
+            clientsHtml += `<li>${clientName}</li>`;
         });
         clientsUl.innerHTML = clientsHtml;
     });
