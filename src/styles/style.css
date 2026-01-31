@@ -189,6 +189,37 @@ p a.goto-initial {
   gap: 0.5rem;
 }
 
-#message-input {
-  flex-grow: 1;
-}
+  #message-input {
+    flex-grow: 1;
+  }
+
+  @media (max-width: 600px) {
+    .container {
+      padding: 1rem; /* Adjust padding for smaller screens */
+    }
+
+    /* Chat View adjustments */
+    #chat-container {
+      grid-template-columns: 1fr; /* Single column layout */
+      grid-template-rows: auto 1fr; /* User list on top, chat area below */
+      height: 80vh; /* Make chat container take more vertical space */
+    }
+
+    #users-list {
+      height: 150px; /* Give a fixed height to the user list */
+      border-bottom: 1px solid #444; /* Add a separator */
+    }
+
+    #chat-area {
+      padding-top: 0; /* Remove top padding if user list is above */
+    }
+
+    #message-form {
+      flex-direction: column; /* Stack input and button vertically */
+      gap: 0.25rem;
+    }
+
+    #message-input, #message-form button {
+      width: 100%;
+    }
+  }
