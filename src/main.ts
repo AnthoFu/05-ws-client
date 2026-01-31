@@ -72,7 +72,9 @@ loginForm.addEventListener('submit', async (e) => {
     try {
         const { token: authToken } = await loginUser({ email, password });
         token = authToken;
-        connectToServer(token, () => showView('chat'));
+        if (token) {
+            connectToServer(token, () => showView('chat'));
+        }
     } catch (error) {
         loginError.textContent = error instanceof Error ? error.message : 'Error desconocido';
     }
@@ -90,7 +92,9 @@ registerForm.addEventListener('submit', async (e) => {
         // Automatically log the user in after successful registration
         const { token: authToken } = await loginUser({ email, password });
         token = authToken;
-        connectToServer(token, () => showView('chat'));
+        if (token) {
+            connectToServer(token, () => showView('chat'));
+        }
     } catch (error) {
         registerError.textContent = error instanceof Error ? error.message : 'Error desconocido';
     }
