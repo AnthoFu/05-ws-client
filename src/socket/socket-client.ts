@@ -1,4 +1,9 @@
 import { Manager, Socket } from "socket.io-client";
+import notificationSoundSrc from '../assets/notification.mp3';
+import messageSendSoundSrc from '../assets/message-send.mp3';
+
+const notificationSound = new Audio(notificationSoundSrc);
+const messageSendSound = new Audio(messageSendSoundSrc);
 
 let socket: Socket;
 
@@ -52,6 +57,7 @@ const onMessageFormSubmit = (event: SubmitEvent) => {
     if (messageInput.value.trim().length <= 0) return;
     socket.emit('message-from-client', { message: messageInput.value });
     messageInput.value = '';
+    messageSendSound.play();
 };
 
 const addListeners = (onConnected: () => void) => {
@@ -78,6 +84,7 @@ const addListeners = (onConnected: () => void) => {
         messagesUl.appendChild(li);
         // Scroll to the bottom
         messagesUl.scrollTop = messagesUl.scrollHeight;
+        notificationSound.play();
     });
     
     // Remove previous listener to avoid duplicates, then add the new one
